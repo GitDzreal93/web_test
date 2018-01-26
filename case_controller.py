@@ -1,13 +1,22 @@
 import unittest
-from test_case import *
 
-test_case_conf = {}
-
-class TestInsert(unittest.TestSuite):
-    # 读取test_cases配置
-    def read_case(self,test_cases):
+case_path = ".\\TestCase"
 
 
-    def insert_case(self):
-        for case_name, case_step in test_cases.items():
-            self.addTest(case_name(''.format()))
+def Creatsuite():
+    # 定义单元测试容器
+    testunit = unittest.TestSuite()
+
+    # 定搜索用例文件的方法
+    discover = unittest.defaultTestLoader.discover(case_path, pattern='test_*.py', top_level_dir=None)
+
+    # 将测试用例加入测试容器中
+    for test_suite in discover:
+        for casename in test_suite:
+            testunit.addTest(casename)
+        print(testunit)
+    return testunit
+
+
+if __name__ == "__main__":
+    pass

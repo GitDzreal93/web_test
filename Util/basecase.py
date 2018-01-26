@@ -2,7 +2,7 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
-from util import tools
+from Util import tools
 
 Path = ''
 
@@ -25,3 +25,4 @@ class BaseCase(unittest.TestCase):
         "Hook method for deconstructing the test fixture after testing it."
         print("生成report")
         print("关闭浏览器")
+
