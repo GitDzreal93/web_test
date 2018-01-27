@@ -4,8 +4,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from Util import tools
 
-Path = ''
-
 class BaseCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -15,6 +13,9 @@ class BaseCase(unittest.TestCase):
         2、请求URL
         3、获取句柄
               ''')
+        # url = "www.baidu.com"
+        # cls.ob = tools.openBrower('firefox')
+        # cls.handle = tools.openUrl(cls.ob,url)
 
         # cls.ob = tools.openBrower('firefox')
         # cls.webdriver_handle = tools.openUrl(cls.ob,'www.baidu.com')

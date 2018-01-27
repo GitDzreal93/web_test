@@ -3,10 +3,13 @@
 # @Site    : 
 # @File    : test_sousuo.py
 # @Software: PyCharm
+import os
+
 import unittest
 from Util import HTMLTestRunner
 from Util.basecase import BaseCase
-import os
+from Util.report_maker import create_report
+
 
 
 class TestSousuo(BaseCase):
@@ -41,25 +44,6 @@ if __name__ == "__main__":
     suite.addTest(TestSousuo('test_06_input_expect'))
     suite.addTest(TestSousuo('test_02_input_none'))
     suite.addTest(TestSousuo('test_03_input_number'))
-    suite.addTest(TestSousuo('test_04_input_english'))
-    suite.addTest(TestSousuo('test_05_input_chinese'))
-    suite.addTest(TestSousuo('test_07_input_div0'))
+    suite.addTest(TestSousuo('test_01_input_max'))
 
-
-
-
-    tdresult = 'test'
-    if os.path.exists(tdresult):
-        filename = r'H:\github\web_test\Report\report.html'
-        with open(filename, 'wb') as fp:
-            runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'测试报告', description=u'用例执行详情：')
-            runner.run(suite)
-    else:
-        os.mkdir(tdresult)
-        filename = r'H:\github\web_test\Report\report.html'
-        with open(filename, 'wb') as fp:
-            runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'测试报告', description=u'用例执行详情：')
-            runner.run(suite)
-
-
-
+    create_report(suite)
