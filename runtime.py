@@ -1,5 +1,6 @@
 from settings import *
 from Util.tools import *
+from Util.sendMail import *
 
 
 def checkAuth(operator):
@@ -26,9 +27,9 @@ def runTime(operator):
     try:
         checkAuth(operator)
         suite = createSuite()
-        createReport(operator, suite)
+        report = createReport(operator, suite)
+        sendMail(report)
         end = start + 1
-        print(end)
         if end == 1:
             print("case全部执行完毕")
             time.sleep(5)

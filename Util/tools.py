@@ -121,18 +121,14 @@ def createReport(operator, suite):
         with open(filename, 'wb') as fp:
             runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'测试报告', description=u'用例执行详情：')
             runner.run(suite)
+            return filename
     else:
         os.mkdir(REPORT_DIR)
         filename = os.path.abspath(os.path.join(REPORT_DIR, '{}_{}_report.html'.format(operator, NOW)))
         with open(filename, 'wb') as fp:
             runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'测试报告', description=u'用例执行详情：')
             runner.run(suite)
-
-
-def sendMail():
-    # TODO: 生成报告后自动发邮件
-    pass
-
+            return filename
 
 def cleanTCR():
     '''
@@ -152,71 +148,3 @@ def cleanTCR():
 
 if __name__ == '__main__':
     createSuite()
-#
-#
-# # 填写表单数据函数
-# def sendVals(eletuple, arg):
-#     '''
-#     ele tuple
-#     account : uname, pwd
-#     '''
-#     listkey = ['uname', 'pwd']
-#     i = 0
-#     for key in listkey:
-#         print(type(eletuple))
-#         eletuple[i].send_keys('')
-#         eletuple[i].clear()
-#         time.sleep(1)
-#         eletuple[i].send_keys(arg[key])
-#         time.sleep(1)
-#         i += 1
-#         # if i==2:
-#         #     eletuple[2].click()
-#
-#     eletuple[2].click()
-#
-#
-# # 错误检查函数
-# def checkResult(d, err_id, arg, log):
-#     result = False
-#     time.sleep(2)  # 服务器是有响应的过程，不加休眠，就会提示报错（假如账号密码正确，也打印出err的日志）
-#
-#     try:
-#         err = d.find_element_by_id(err_id)
-#         print("Account And Pwd Error!")
-#         # msg = 'uname=%s pwd=%s:error:%s\n'%(arg['uname'], arg['pwd'], err.text)   #打印TXT日志，则将这两句注释去掉
-#         # log.log_write(msg)
-#         log.log_write(arg['uname'], arg['pwd'], 'Error', err.text)
-#
-#     except:
-#         print("Account And Pwd Right!")
-#         # msg = 'uname=%s pwd=%s:pass\n' % (arg['uname'], arg['pwd'])
-#         # log.log_write(msg)
-#         log.log_write(arg['uname'], arg['pwd'], 'Pass')
-#         result = True
-#     return result
-#
-#
-# # 注销登录函数
-# def logout(d, ele_dict):
-#     ele = d.find_element_by_class_name(ele_dict['usermenu'])
-#     ActionChains(d).move_to_element(ele).perform()
-#     d.find_element_by_link_text(ele_dict['logout']).click()
-#
-#
-# # 登录操作函数
-# def login_test(ele_dict, user_list):
-#     d = openBrower()
-#     log = Xlloginfo()
-#     log.log_init('sheet1', 'uname', 'pwd', 'result', 'msg')
-#     openUrl(d, ele_dict['url'])
-#     ele_tuple = findElement(d, ele_dict)
-#     for arg in user_list:
-#         sendVals(ele_tuple, arg)  # arg是user_list列表中的其中一个字典
-#         result = checkResult(d, ele_dict['err_id'], arg, log)
-#         if result:
-#             # logout注销
-#             logout(d, ele_dict)
-#             # login重新登陆
-#             ele_tuple = findElement(d, ele_dict)
-#     log.log_close()

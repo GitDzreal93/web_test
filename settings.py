@@ -30,4 +30,4 @@ OPERATOR = {
 }
 
 # 测试完毕后是否清除case工作仓库（0 不清除；1 清除）
-IS_CLEAN_TCR = 1
+IS_CLEAN_TCR = 0
